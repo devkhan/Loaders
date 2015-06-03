@@ -1,5 +1,7 @@
 # Loaders
 
+[![Join the chat at https://gitter.im/teamDAPSR/Loaders](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/teamDAPSR/Loaders?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ==========================
 
 This project aims at creating an animation library for different types of loading animations, progress dialogs, etc.
