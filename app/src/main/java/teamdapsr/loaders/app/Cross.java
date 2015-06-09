@@ -1,33 +1,34 @@
 package teamdapsr.loaders.app;
 
-import android.app.Activity;
-import android.content.Context;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Gravity;
-import android.widget.LinearLayout;
-
-import teamdapsr.loaders.lib.CrosswordGrid;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 
 /**
  * Created by pa1pal on 9/6/15.
  */
-public class Cross extends ActionBarActivity {
-
+public class Cross extends DialogFragment {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        // Use the Builder class for convenient dialog construction
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        Context context;
-        LinearLayout layout = new LinearLayout(this);
-        layout.setGravity(Gravity.CENTER);
-        layout.setOrientation(LinearLayout.VERTICAL);
-
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        CrosswordGrid crosswordGrid = new CrosswordGrid(getApplicationContext(), 10);
-        layout.addView(crosswordGrid, layoutParams);
-
-        setContentView(layout);
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        builder.setView(inflater.inflate(R.layout.cross, null))
+                // Add action buttons
+                .setPositiveButton("positive", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // sign in the user ...
+                    }
+                })
+        ;
+        return builder.create();
     }
 }
+

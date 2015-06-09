@@ -2,6 +2,7 @@ package teamdapsr.loaders.app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -40,8 +41,8 @@ public class MainActivity extends ActionBarActivity
 				switch (position)
 				{
 					case 0 :
-						Intent cross = new Intent(MainActivity.this , Cross.class);
-						startActivity(cross);
+						DialogFragment dialog = new Cross();
+						dialog.show(getSupportFragmentManager(), "Cross");
 						break;
 
 					case 1:
