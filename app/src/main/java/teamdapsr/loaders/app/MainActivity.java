@@ -1,9 +1,12 @@
 package teamdapsr.loaders.app;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import teamdapsr.loaders.lib.CustomProgressDialog;
 
 
 public class MainActivity extends ActionBarActivity
@@ -14,6 +17,7 @@ public class MainActivity extends ActionBarActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
 	}
 
 	@Override
