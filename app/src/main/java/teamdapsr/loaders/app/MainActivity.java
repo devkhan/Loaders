@@ -1,10 +1,19 @@
 package teamdapsr.loaders.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Switch;
+import android.widget.Toast;
+
+import java.lang.reflect.Array;
 
 import teamdapsr.loaders.lib.CustomProgressDialog;
 
@@ -12,12 +21,43 @@ import teamdapsr.loaders.lib.CustomProgressDialog;
 public class MainActivity extends ActionBarActivity
 {
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		ListView list = (ListView) findViewById(R.id.loaders_list);
+
+		String[] loader = new String[]{"Crossword Grid", "Windows", "Numbers", "Circular", "Sqare", "Fade"};
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, loader);
+		list.setAdapter(adapter);
+
+		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				switch (position)
+				{
+					case 0 :
+						Intent cross = new Intent(MainActivity.this , Cross.class);
+						startActivity(cross);
+						break;
+
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+						Toast.makeText(getApplicationContext(), "Coming soon" , Toast.LENGTH_LONG).show();
+						break;
+					default:
+						Toast.makeText(getApplicationContext(), "wrong choice" , Toast.LENGTH_LONG).show();
+						break;
+
+				}
+			}
+		});
 	}
 
 	@Override
