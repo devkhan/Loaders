@@ -14,11 +14,19 @@ import java.util.Random;
 import teamdapsr.loaders.lib.utils.MeasureUtils;
 
 /**
+ * This class is a view which provides a randomized grid structure.
+ *
  * Created by Devesh on 08-Jun-15.
  */
 public class CrosswordGrid extends View
 {
+	/**
+	 * {@link int} - Side of the cell of each cell in the grid.
+	 */
 	private int squareSide;
+	/**
+	 * {@link Paint} object for empty cell.
+	 */
 	private Paint mSquarePaint;
 	private Paint mSquarePaintFill;
 

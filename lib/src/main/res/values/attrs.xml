@@ -4,7 +4,6 @@
 		<attr name="squareSide" format="integer" />
 	</declare-styleable>
 
-
 		<!--<declare-styleable name="CustompieChart">-->
 			<!--&lt;!&ndash;<attr name="showText" format="boolean" />&ndash;&gt;-->
 			<!--&lt;!&ndash;<attr name="labelPosition" format="enum">&ndash;&gt;-->
@@ -27,6 +26,13 @@
 		<attr name="pieRotation" format="integer"/>
 		<attr name="pointerRadius" format="dimension"/>
 		<attr name="showingText" format="boolean"/>
+	</declare-styleable>
+
+	<declare-styleable name="RectangleView">
+		<attr name="length" format="float" />
+		<attr name="breadth" format="float" />
+		<attr name="color" format="color" />
+		<attr name="style" format="enum" />
 	</declare-styleable>
 
 </resources>
