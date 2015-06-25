@@ -1,3 +1,4 @@
 <resources>
 	<string name="app_name">Loaders</string>
+	<string name="reset_button">Reset</string>
 </resources>
