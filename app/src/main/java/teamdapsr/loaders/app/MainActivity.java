@@ -1,22 +1,28 @@
 package teamdapsr.loaders.app;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ProgressBar;
+
+import teamdapsr.loaders.lib.ProgressWheel;
 
 
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends AppCompatActivity
 {
 
-	ProgressBar df;
+
+	private ProgressWheel progressWheel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.progressdemo);
+
+        progressWheel = (ProgressWheel) findViewById(R.id.progress_wheel);
+        final int defaultBarColor = progressWheel.getBarColor();
+        final int defaultWheelColor = progressWheel.getRimColor();
 
 	}
 
