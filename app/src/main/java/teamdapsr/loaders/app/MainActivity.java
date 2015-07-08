@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity
 		setContentView(R.layout.progressdemo);
 
         progressWheel = (ProgressWheel) findViewById(R.id.progress_wheel);
-        final int defaultBarColor = progressWheel.getBarColor();
-        final int defaultWheelColor = progressWheel.getRimColor();
 
 	}
 
