@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="teamdapsr.loaders.app" >
 
+
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +23,12 @@
 
         </activity>
         <activity android:name=".PieChardDemo" android:label="Progrssdemo">
+
+        </activity>
+        <activity android:name=".Gif" android:label="Progrssdemo">
+
+        </activity>
+        <activity android:name=".crosswordgrid" android:label="Progrssdemo">
 
         </activity>
     </application>

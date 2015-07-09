@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-    private static final String[] ITEMS = {"Progressbar demo", "PiechartDemo", "list3", "list4"};
+    private static final String[] ITEMS = {"Progressbar demo", "PiechartDemo", "Gif", "Crossword"};
 
 
     @Override
@@ -51,13 +51,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             }
             case 2: {
-//                Intent i = new Intent(this, DoubleImageActivity.class);
-//                startActivity(i);
+                Intent i = new Intent(this, Gif.class);
+                startActivity(i);
                 break;
             }
             case 3: {
-//                Intent i = new Intent(this, BoxGridActivity.class);
-//                startActivity(i);
+                Intent i = new Intent(this, crosswordgrid.class);
+                startActivity(i);
                 break;
             }
             default:

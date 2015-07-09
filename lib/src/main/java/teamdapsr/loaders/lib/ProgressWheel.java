@@ -258,6 +258,7 @@ public class ProgressWheel extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+
         canvas.drawArc(circleBounds, 360, 360, false, rimPaint);
 
         boolean mustInvalidate = false;
