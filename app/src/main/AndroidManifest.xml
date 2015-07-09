@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".progressdemo" android:label="Progrssdemo">
+
+        </activity>
+        <activity android:name=".PieChardDemo" android:label="Progrssdemo">
+
+        </activity>
     </application>
 
 </manifest>

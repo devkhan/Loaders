@@ -1,28 +1,70 @@
 package teamdapsr.loaders.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import teamdapsr.loaders.lib.ProgressWheel;
 
-
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener
 {
 
 
-	private ProgressWheel progressWheel;
 
-	@Override
+    private static final String[] ITEMS = {"Progressbar demo", "PiechartDemo", "list3", "list4"};
+
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.progressdemo);
 
-        progressWheel = (ProgressWheel) findViewById(R.id.progress_wheel);
+		ListView list = new ListView(this);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ITEMS);
+
+		list.setAdapter(adapter);
+		list.setOnItemClickListener(this);
+
+		setContentView(list);
+
 
 	}
+
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0: {
+                Intent i = new Intent(this, progressdemo.class);
+                startActivity(i);
+                break;
+            }
+            case 1: {
+                Intent i = new Intent(this, PieChardDemo.class);
+                startActivity(i);
+                break;
+            }
+            case 2: {
+//                Intent i = new Intent(this, DoubleImageActivity.class);
+//                startActivity(i);
+                break;
+            }
+            case 3: {
+//                Intent i = new Intent(this, BoxGridActivity.class);
+//                startActivity(i);
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
