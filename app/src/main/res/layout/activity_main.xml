@@ -26,9 +26,5 @@
 			custom:squareSide="10"/>-->
 
 
-        <teamdapsr.loaders.lib.CubicBezierRotate
-	        android:id="@+id/cubicBezierRotate"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        />
+
 </RelativeLayout>

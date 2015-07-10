@@ -34,7 +34,9 @@ public class MainActivity extends AppCompatActivity
 
 		ListView list = (ListView) findViewById(R.id.loaders_list);
 
-		String[] loader = new String[]{"Crossword Grid", "Windows", "Numbers", "Circular", "Sqare", "Fade"};
+		String[] loader = new String[]{"Crossword Grid", "Windows", "Numbers", "Circular",
+				"Sqare", "Fade", "Rotate"};
+
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, loader);
 		list.setAdapter(adapter);
 
@@ -54,6 +56,11 @@ public class MainActivity extends AppCompatActivity
 					case 4:
 					case 5:
 						Toast.makeText(getApplicationContext(), "Coming soon" , Toast.LENGTH_LONG).show();
+						break;
+
+					case 6:
+						DialogFragment ripple = new Ripple();
+						ripple.show(getSupportFragmentManager(), "Ripple");
 						break;
 					default:
 						Toast.makeText(getApplicationContext(), "wrong choice" , Toast.LENGTH_LONG).show();
