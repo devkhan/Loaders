@@ -3,4 +3,7 @@
 	<declare-styleable name="CrosswordGrid">
 		<attr name="squareSide" format="integer" />
 	</declare-styleable>
+	<declare-styleable name="CubicBezierRotate">
+		<attr name="radius" format="integer" />
+	</declare-styleable>
 </resources>
