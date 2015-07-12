@@ -7,6 +7,11 @@
     <teamdapsr.loaders.lib.CubicBezierRotate
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:id="@+id/view" />
+        android:id="@+id/view"
+	    custom:min_radius="40"
+	    custom:max_radius="120"
+	    custom:duration="3000"
+	    custom:animate_color="false"
+	    custom:circles_count="15"/>
 
 </LinearLayout>
