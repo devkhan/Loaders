@@ -317,4 +317,93 @@ public class CubicBezierRotate extends View
 	}
 
 
+	/**
+	 * Getter for attribute 'min_radius'.
+	 *
+	 * @return Value for attribute 'min_radius'.
+	 */
+	public int getMinRadius()
+	{
+		return mMinRadius;
+	}
+
+	/**
+	 * Setter for attribute 'min_radius'.
+	 *
+	 * @param mMinRadius Value to set for attribute 'min_radius'.
+	 */
+	public void setMinRadius(int mMinRadius)
+	{
+		this.mMinRadius = mMinRadius;
+		setupAnimations();
+		invalidate();
+	}
+
+	/**
+	 * Getter for attribute 'max_radius'.
+	 *
+	 * @return Value for attribute 'max_radius'.
+	 */
+	public int getMaxRadius()
+	{
+		return mMaxRadius;
+	}
+
+	/**
+	 * Setter for attribute 'max_radius'.
+	 *
+	 * @param mMaxRadius Value to set for attribute 'max_radius'.
+	 */
+	public void setMaxRadius(int mMaxRadius)
+	{
+		this.mMaxRadius = mMaxRadius;
+		setupAnimations();
+		invalidate();
+	}
+
+	/**
+	 * Getter for attribute 'circles_count'.
+	 *
+	 * @return Value for attribute 'circles_count'.
+	 */
+	public int getCirclesCount()
+	{
+		return mCirclesCount;
+	}
+
+	/**
+	 * Setter for attribute 'circles_count'.
+	 *
+	 * @param mCirclesCount Value to set for attribute 'circles_count'.
+	 */
+	public void setCirclesCount(int mCirclesCount)
+	{
+		this.mCirclesCount = mCirclesCount;
+		init();
+		setupAnimations();
+		invalidate();
+	}
+
+	/**
+	 * Getter for property 'duration'.
+	 *
+	 * @return Value for property 'duration'.
+	 */
+	public int getDuration()
+	{
+		return mDuration;
+	}
+
+	/**
+	 * Setter for property 'duration'.
+	 *
+	 * @param mDuration Value to set for property 'duration'.
+	 */
+	public void setDuration(int mDuration)
+	{
+		this.mDuration = mDuration;
+		setupAnimations();
+		invalidate();
+	}
+
 }
