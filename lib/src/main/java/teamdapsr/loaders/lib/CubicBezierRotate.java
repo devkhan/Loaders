@@ -1,47 +1,155 @@
 package teamdapsr.loaders.lib;
 
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AnticipateOvershootInterpolator;
 import android.util.Log;
-import android.view.animation.LinearInterpolator;
+import android.view.View;
 
 import teamdapsr.loaders.lib.utils.MeasureUtils;
+import teamdapsr.loaders.lib.utils.Utils;
 
 /**
- * Created by Devesh on 08-Jul-15.
+ * Animating concentric circles. Extends {@link View}. A Custom View.
+ * <p/>
+ * Created on 08-July-2015.
+ * Modified on 13-July-2015.
+ *
+ * @author Devesh Khandelwal
  */
-public class CubicBezierRotate extends View{
+public class CubicBezierRotate extends View
+{
 
-	private int radius = 0, centerx, centery;
-	private ShapeDrawable circleOne, circleTwo, circleThree;
-	protected Paint paint[];
-	protected ValueAnimator anim1, anim2, anim3;
-	public int getRadius(){ return radius; }
-	public void setRadius(int radius){ this.radius = radius; }
+	/**
+	 * Class name for logging.
+	 */
+	private String LOG_TAG = getClass().getSimpleName();
 
+
+	/**
+	 * Minimum radius of the circles.
+	 */
+	protected int mMinRadius;
+
+	/**
+	 * Maximum radius of the circles.
+	 */
+	protected int mMaxRadius;
+
+	/**
+	 * Number of circles.
+	 */
+	protected int mCirclesCount;
+
+	/**
+	 * Animate color or not.
+	 */
+	protected boolean mAnimateColor;
+
+	/**
+	 * Starting color, if animating.
+	 */
+	protected int mStartColor;
+
+	/**
+	 * Ending color, if animating.
+	 */
+	protected int mEndColor;
+
+	/**
+	 * Animation duration.
+	 */
+	protected int mDuration;
+
+
+	/**
+	 * Array of {@link ValueAnimator} objects. One for each circle.
+	 */
+	protected ValueAnimator mAnim[];
+
+	/**
+	 * Array of {@link Paint} objects. One for each circle, if not animating color.
+	 */
+	protected Paint mPaint[];
+
+	/**
+	 * Paint object used for drawing, if animating color.
+	 */
+	protected Paint mAnimatePaint;
+
+	/**
+	 * Aniamtor for color, if animating.
+	 */
+	protected ValueAnimator mColorAnim;
+
+
+	/**
+	 * Instantiates an object with just a {@link Context} and the default attributes. Used when
+	 * creating a view programmatically.
+	 *
+	 * @param context variable required for instantiating a view.
+	 */
+	public CubicBezierRotate(Context context)
+	{
+		super(context);
+
+		/**
+		 * Setting default values.
+		 */
+		mMaxRadius = 0;
+		mMaxRadius = 100;
+		mCirclesCount = 3;
+		mAnimateColor = false;
+		mDuration = 3000;
+
+		init();
+	}
+
+	/**
+	 * Instantiates an object with just a {@link Context} and attributes provided in the
+	 * attribute set by the XML resource file. Called when defining view via XML resource.
+	 *
+	 * @param context variable required for instantiating a view.
+	 * @param attrs   Attribute Set containing attributes defined in the layout resource file.
+	 */
 	public CubicBezierRotate(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
 
-		TypedArray a = context.getTheme().obtainStyledAttributes(
+		// TODO: Get parent view's measurements so that max radius can be defaulted to max
+		// height/width.
+
+		/**
+		 * Gets the defined attributes in the layout resource file as a {@link TypedArray}.
+		 */
+		TypedArray styledAttributes = context.getTheme().obtainStyledAttributes(
 				attrs,
 				R.styleable.CubicBezierRotate,
 				0, 0
 		);
 
+		/**
+		 * Trying to extract defined attributes in the layout resource file.
+		 */
 		try
 		{
-			radius = a.getInt(R.styleable.CubicBezierRotate_radius, 0);
+			mMinRadius = styledAttributes.getInt(R.styleable.CubicBezierRotate_min_radius, 0);
+			mMaxRadius = styledAttributes.getInt(R.styleable.CubicBezierRotate_max_radius, 100);
+			mCirclesCount = styledAttributes.getInt(R.styleable.CubicBezierRotate_circles_count, 3);
+			mAnimateColor = styledAttributes.getBoolean(R.styleable.CubicBezierRotate_animate_color, true);
+			if (mAnimateColor)
+			{
+				mStartColor = styledAttributes.getColor(R.styleable.CubicBezierRotate_start_color, Color
+						.parseColor("#00000000"));
+				mEndColor = styledAttributes.getColor(R.styleable.CubicBezierRotate_end_color, Color.parseColor
+						("#ffffffff"));
+			}
+			mDuration = styledAttributes.getInt(R.styleable.CubicBezierRotate_duration, 1500);
+
 		}
 		catch (Exception e)
 		{
@@ -49,115 +157,117 @@ public class CubicBezierRotate extends View{
 		}
 		finally
 		{
-			a.recycle();
+			styledAttributes.recycle();
 		}
 		init();
 	}
 
+	/**
+	 * Initializing {@link Paint} objects to draw later on.
+	 */
 	protected void init()
 	{
-		circleOne = new ShapeDrawable(new OvalShape());
-		circleTwo = new ShapeDrawable(new OvalShape());
-		circleThree = new ShapeDrawable(new OvalShape());
+		/**
+		 * Setting up paints for drawing circles.
+		 */
+		if (mAnimateColor)
+		{
+			mAnimatePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+			mAnimatePaint.setStyle(Paint.Style.FILL);
+			mAnimatePaint.setColor(mStartColor);
+		}
+		else
+		{
+			mPaint = new Paint[mCirclesCount];
 
-		circleOne.getPaint().setColor(0x99ff0000);
-		circleTwo.getPaint().setColor(0x9900ff00);
-		circleThree.getPaint().setColor(0x990000ff);
-
-		ObjectAnimator animator = ObjectAnimator.ofInt(this, "radius", 0, 100);
-		animator.setDuration(5000);
-		animator.setInterpolator(new AnticipateOvershootInterpolator());
-
-/*		Thread thread = new Thread() {
-			@Override
-			public void run() {
-				try {
-					while(true) {
-						sleep(50);
-						updateBounds();
-					}
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+			for (int i = 0; i < mPaint.length; i++)
+			{
+				mPaint[i] = new Paint(Paint.ANTI_ALIAS_FLAG);
+				mPaint[i].setStyle(Paint.Style.FILL);
+				mPaint[i].setColor(Utils.randomColor());
 			}
-		};*/
-
-
-		paint = new Paint[3];
-
-		paint[0] = new Paint(Paint.ANTI_ALIAS_FLAG);
-		paint[1] = new Paint(Paint.ANTI_ALIAS_FLAG);
-		paint[2] = new Paint(Paint.ANTI_ALIAS_FLAG);
-
-		paint[0].setStyle(Paint.Style.FILL);
-		paint[1].setStyle(Paint.Style.FILL);
-		paint[2].setStyle(Paint.Style.FILL);
-
-		paint[0].setColor(0x10ff0000);
-		paint[1].setColor(0x1000ff00);
-		paint[2].setColor(0x100000ff);
-
-
+		}
 
 	}
 
+	/**
+	 * Setting up {@link ValueAnimator} objects and starting them.
+	 */
 	protected void setupAnimations()
 	{
+		/**
+		 * Setting up animations for animating circles and colors.
+		 */
+		if (mAnimateColor)
+		{
+			if (mStartColor <= mEndColor)
+			{
+				mColorAnim = ValueAnimator.ofInt(mStartColor, mEndColor);
+			}
+			else
+			{
+				mColorAnim = ValueAnimator.ofInt(mEndColor, mStartColor);
+			}
 
-		anim1 = ValueAnimator.ofInt(0, (int)(0.25*getMeasuredHeight()));
-		anim2 = ValueAnimator.ofInt(0, (int)(0.35*getMeasuredHeight()));
-		anim3 = ValueAnimator.ofInt(0, (int)(0.45*getMeasuredHeight()));
+			mColorAnim.setDuration(mDuration * 10);
+			mColorAnim.setRepeatMode(ValueAnimator.REVERSE);
+			mColorAnim.setRepeatCount(ValueAnimator.INFINITE);
+			mColorAnim.start();
+		}
 
-		anim1.setDuration(1500);
-		anim2.setDuration(2000);
-		anim3.setDuration(2500);
+		mAnim = new ValueAnimator[mCirclesCount];
 
-		anim1.setInterpolator(new AccelerateDecelerateInterpolator());
-		anim2.setInterpolator(new LinearInterpolator());
-		anim3.setInterpolator(new AnticipateOvershootInterpolator());
-
-		anim1.setRepeatMode(ValueAnimator.REVERSE);
-		anim2.setRepeatMode(ValueAnimator.REVERSE);
-		anim3.setRepeatMode(ValueAnimator.REVERSE);
-
-		anim1.setRepeatCount(ValueAnimator.INFINITE);
-		anim2.setRepeatCount(ValueAnimator.INFINITE);
-		anim3.setRepeatCount(ValueAnimator.INFINITE);
-
-		anim1.start();
-		anim2.start();
-		anim3.start();
-	}
-	protected void updateBounds(int radius)
-	{
-/*
-		circleOne.setBounds(radius, radius, radius, radius);
-		circleTwo.setBounds(radius, radius, radius, radius);
-		circleThree.setBounds(radius, radius, radius, radius);
-*/
-
-		invalidate();
-		//requestLayout();
+		for (int i = 0; i < mAnim.length; i++)
+		{
+			mAnim[i] = ValueAnimator.ofInt(mMinRadius, mMaxRadius);
+			mAnim[i].setDuration(mDuration);
+			mAnim[i].setRepeatMode(ValueAnimator.REVERSE);
+			mAnim[i].setRepeatCount(ValueAnimator.INFINITE);
+			mAnim[i].setInterpolator(Utils.randomInterpolator());
+			mAnim[i].start();
+		}
 	}
 
 	@Override
 	public void onDraw(Canvas canvas)
 	{
 
-			Log.i("radius", "Radius1 = " + (int) (anim1.getAnimatedValue()));
-			Log.i("radius", "Radius2 = " + (int) (anim2.getAnimatedValue()));
-			Log.i("radius", "Radius3 = " + (int) (anim3.getAnimatedValue()));
-			canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, (int) (anim1
-							.getAnimatedValue()),
-					paint[0]);
-			canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, (int)(anim2.getAnimatedValue()), paint[1]);
-			canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, (int)(anim3.getAnimatedValue()), paint[2]);
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		super.onDraw(canvas);
+
+		if (!mAnimateColor)
+		{
+			for (int i = 0; i < mCirclesCount; i++)
+			{
+				Log.i(LOG_TAG, "Radius " + i + " : " + (int) (mAnim[i]
+						.getAnimatedValue()));
+				canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (int) (mAnim[i]
+						.getAnimatedValue()), mPaint[i]);
 			}
-		updateBounds(0);
+		}
+		else
+		{
+			mAnimatePaint.setColor((int) (mColorAnim.getAnimatedValue()));
+			for (int i = 0; i < mCirclesCount; i++)
+			{
+				Log.i(LOG_TAG, "Radius " + i + " : " + (int) (mAnim[i]
+						.getAnimatedValue()));
+				canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (int) (mAnim[i]
+						.getAnimatedValue()), mAnimatePaint);
+			}
+		}
+
+		/**
+		 * Waiting for sometime, mainly for animation purposes and litte bit performance issues.
+		 */
+		try
+		{
+			Thread.sleep(50);
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		invalidate();
 
 	}
 
@@ -176,8 +286,6 @@ public class CubicBezierRotate extends View{
 		// Get the height measurement
 		int heightSize = MeasureUtils.getMeasurement(heightMeasureSpec, getDesiredHeight());
 
-		centerx = (int)(0.5*MeasureSpec.getSize(widthMeasureSpec));
-		centery = (int)(0.5*MeasureSpec.getSize(heightMeasureSpec));
 
 		//MUST call this to store the measurements
 		setMeasuredDimension(widthSize + 10, heightSize + 10);
@@ -185,17 +293,28 @@ public class CubicBezierRotate extends View{
 		setupAnimations();
 	}
 
+	/**
+	 * Calculates width from child components.
+	 *
+	 * @return Desired width in view.
+	 */
 	private int getDesiredWidth()
 	{
 		// TO-DO Calculate width from child components.
 
-		return 2*radius+200;
+		return 2 * mMaxRadius + 100;
 	}
 
+	/**
+	 * Calculate height from child components.
+	 *
+	 * @return Desired height of view.
+	 */
 	private int getDesiredHeight()
 	{
-		// TO-DO Calculate height from chile components.
-		return 2*radius+200;
+		// TO-DO Calculate height from child components.
+		return 2 * mMaxRadius + 100;
 	}
+
 
 }

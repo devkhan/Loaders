@@ -4,6 +4,12 @@
 		<attr name="squareSide" format="integer" />
 	</declare-styleable>
 	<declare-styleable name="CubicBezierRotate">
-		<attr name="radius" format="integer" />
+		<attr name="max_radius" format="integer" />
+		<attr name="min_radius" format="integer" />
+		<attr name="circles_count" format="integer" />
+		<attr name="animate_color" format="boolean" />
+		<attr name="duration" format="integer" />
+		<attr name="start_color" format="color" />
+		<attr name="end_color" format="color" />
 	</declare-styleable>
 </resources>
