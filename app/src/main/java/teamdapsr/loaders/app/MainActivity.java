@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity
 						break;
 
 					case 6:
-						DialogFragment ripple = new ConcentricCirclesDialog();
-						ripple.show(getSupportFragmentManager(), "ConcentricCirclesDialog");
+						DialogFragment concentricCirclesDialog = new ConcentricCirclesDialog();
+						concentricCirclesDialog.show(getSupportFragmentManager(), "ConcentricCirclesDialog");
 						break;
 					default:
 						Toast.makeText(getApplicationContext(), "wrong choice" , Toast.LENGTH_LONG).show();
