@@ -1,9 +1,6 @@
 package teamdapsr.loaders.app;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -12,12 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.Toast;
-
-import java.lang.reflect.Array;
-
-import teamdapsr.loaders.lib.CustomProgressDialog;
 
 
 public class MainActivity extends AppCompatActivity
@@ -35,7 +27,7 @@ public class MainActivity extends AppCompatActivity
 		ListView list = (ListView) findViewById(R.id.loaders_list);
 
 		String[] loader = new String[]{"Crossword Grid", "Windows", "Numbers", "Circular",
-				"Sqare", "Fade", "Rotate"};
+				"Sqare", "Fade", "Concentric Cirlces"};
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, loader);
 		list.setAdapter(adapter);
@@ -59,8 +51,8 @@ public class MainActivity extends AppCompatActivity
 						break;
 
 					case 6:
-						DialogFragment ripple = new Ripple();
-						ripple.show(getSupportFragmentManager(), "Ripple");
+						DialogFragment ripple = new ConcentricCirclesDialog();
+						ripple.show(getSupportFragmentManager(), "ConcentricCirclesDialog");
 						break;
 					default:
 						Toast.makeText(getApplicationContext(), "wrong choice" , Toast.LENGTH_LONG).show();

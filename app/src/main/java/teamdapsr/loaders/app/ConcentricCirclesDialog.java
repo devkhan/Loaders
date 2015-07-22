@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 /**
  * Created by pa1pal on 9/6/15.
  */
-public class Ripple extends DialogFragment {
+public class ConcentricCirclesDialog extends DialogFragment {
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		// Use the Builder class for convenient dialog construction
@@ -19,7 +19,7 @@ public class Ripple extends DialogFragment {
 
 		// Inflate and set the layout for the dialog
 		// Pass null as the parent view because its going in the dialog layout
-		builder.setView(inflater.inflate(R.layout.ripple, null))
+		builder.setView(inflater.inflate(R.layout.concentric_circles, null))
 				// Add action buttons
 				.setPositiveButton("positive", new DialogInterface.OnClickListener() {
 					@Override

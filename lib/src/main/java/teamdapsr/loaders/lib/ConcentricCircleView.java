@@ -21,7 +21,7 @@ import teamdapsr.loaders.lib.utils.Utils;
  *
  * @author Devesh Khandelwal
  */
-public class CubicBezierRotate extends View
+public class ConcentricCircleView extends View
 {
 
 	/**
@@ -93,7 +93,7 @@ public class CubicBezierRotate extends View
 	 *
 	 * @param context variable required for instantiating a view.
 	 */
-	public CubicBezierRotate(Context context)
+	public ConcentricCircleView(Context context)
 	{
 		super(context);
 
@@ -116,7 +116,7 @@ public class CubicBezierRotate extends View
 	 * @param context variable required for instantiating a view.
 	 * @param attrs   Attribute Set containing attributes defined in the layout resource file.
 	 */
-	public CubicBezierRotate(Context context, AttributeSet attrs)
+	public ConcentricCircleView(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
 
@@ -128,7 +128,7 @@ public class CubicBezierRotate extends View
 		 */
 		TypedArray styledAttributes = context.getTheme().obtainStyledAttributes(
 				attrs,
-				R.styleable.CubicBezierRotate,
+				R.styleable.ConcentricCircleView,
 				0, 0
 		);
 
@@ -137,18 +137,18 @@ public class CubicBezierRotate extends View
 		 */
 		try
 		{
-			mMinRadius = styledAttributes.getInt(R.styleable.CubicBezierRotate_min_radius, 0);
-			mMaxRadius = styledAttributes.getInt(R.styleable.CubicBezierRotate_max_radius, 100);
-			mCirclesCount = styledAttributes.getInt(R.styleable.CubicBezierRotate_circles_count, 3);
-			mAnimateColor = styledAttributes.getBoolean(R.styleable.CubicBezierRotate_animate_color, true);
+			mMinRadius = styledAttributes.getInt(R.styleable.ConcentricCircleView_min_radius, 0);
+			mMaxRadius = styledAttributes.getInt(R.styleable.ConcentricCircleView_max_radius, 100);
+			mCirclesCount = styledAttributes.getInt(R.styleable.ConcentricCircleView_circles_count, 3);
+			mAnimateColor = styledAttributes.getBoolean(R.styleable.ConcentricCircleView_animate_color, true);
 			if (mAnimateColor)
 			{
-				mStartColor = styledAttributes.getColor(R.styleable.CubicBezierRotate_start_color, Color
+				mStartColor = styledAttributes.getColor(R.styleable.ConcentricCircleView_start_color, Color
 						.parseColor("#00000000"));
-				mEndColor = styledAttributes.getColor(R.styleable.CubicBezierRotate_end_color, Color.parseColor
+				mEndColor = styledAttributes.getColor(R.styleable.ConcentricCircleView_end_color, Color.parseColor
 						("#ffffffff"));
 			}
-			mDuration = styledAttributes.getInt(R.styleable.CubicBezierRotate_duration, 1500);
+			mDuration = styledAttributes.getInt(R.styleable.ConcentricCircleView_duration, 1500);
 
 		}
 		catch (Exception e)
