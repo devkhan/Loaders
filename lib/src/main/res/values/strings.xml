@@ -1,5 +1,4 @@
 <resources>
 	<string name="app_name">Loaders</string>
 	<string name="reset_button">Reset</string>
-	<string name="default_progressbar">Default Progressbar:</string>
 </resources>

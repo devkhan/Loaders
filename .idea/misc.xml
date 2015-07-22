@@ -19,6 +19,7 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+
   <component name="masterDetails">
     <states>
       <state key="ProjectJDKs.UI">
@@ -34,8 +35,8 @@
         </settings>
       </state>
     </states>
-  </component>
-      <component name="ideadoc.IdeaDocConfigurationGUI">
+
+    <component name="ideadoc.IdeaDocConfigurationGUI">
       <doccer class="nl.piraya.ideadoc.doccer.DoccerForOverridingMethod" enabled="true">
         <template>/**$s${@inheritDoc}$s$*/</template>
       </doccer>
@@ -52,4 +53,4 @@
         <template>/**$s$Do$s$not$s$instantiate$s$${CLASS_NAME}.$s$*/</template>
       </doccer>
     </component>
-</project>
+  </project>

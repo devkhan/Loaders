@@ -2,34 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="teamdapsr.loaders.app" >
 
-
-    <uses-permission android:name="android.permission.SET_WALLPAPER" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="teamdapsr.loaders.app.MainActivity"
+            android:name="teamdapsr.loaders.app.PieChardDemo"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".progressdemo" android:label="Progrssdemo">
-
-        </activity>
-        <activity android:name=".PieChardDemo" android:label="Progrssdemo">
-
-        </activity>
-        <activity android:name=".Gif" android:label="Progrssdemo">
-
-        </activity>
-        <activity android:name=".crosswordgrid" android:label="Progrssdemo">
-
         </activity>
     </application>
 

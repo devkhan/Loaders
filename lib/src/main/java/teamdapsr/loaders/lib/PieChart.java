@@ -483,53 +483,16 @@ public class PieChart extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // Try for a width based on our minimum
-//        int minw = getPaddingLeft() + getPaddingRight() + getSuggestedMinimumWidth();
-//
-//        int w = Math.max(minw, MeasureSpec.getSize(widthMeasureSpec));
-//
-//        // Whatever the width ends up being, ask for a height that would let the pie
-//        // get as big as it can
-//        int minh = (w - (int) mTextWidth) + getPaddingBottom() + getPaddingTop();
-//        int h = Math.min(MeasureSpec.getSize(heightMeasureSpec), minh);
-//
-//        setMeasuredDimension(w, h);
+        int minw = getPaddingLeft() + getPaddingRight() + getSuggestedMinimumWidth();
 
-        int viewWidth =  this.getPaddingLeft() + this.getPaddingRight();
-        int viewHeight = this.getPaddingTop() + this.getPaddingBottom();
+        int w = Math.max(minw, MeasureSpec.getSize(widthMeasureSpec));
 
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        // Whatever the width ends up being, ask for a height that would let the pie
+        // get as big as it can
+        int minh = (w - (int) mTextWidth) + getPaddingBottom() + getPaddingTop();
+        int h = Math.min(MeasureSpec.getSize(heightMeasureSpec), minh);
 
-        int width;
-        int height;
-
-        //Measure Width
-        if (widthMode == MeasureSpec.EXACTLY) {
-            //Must be this size
-            width = widthSize;
-        } else if (widthMode == MeasureSpec.AT_MOST) {
-            //Can't be bigger than...
-            width = Math.min(viewWidth, widthSize);
-        } else {
-            //Be whatever you want
-            width = viewWidth;
-        }
-
-        //Measure Height
-        if (heightMode == MeasureSpec.EXACTLY || widthMode == MeasureSpec.EXACTLY) {
-            //Must be this size
-            height = heightSize;
-        } else if (heightMode == MeasureSpec.AT_MOST) {
-            //Can't be bigger than...
-            height = Math.min(viewHeight, heightSize);
-        } else {
-            //Be whatever you want
-            height = viewHeight;
-        }
-
-        setMeasuredDimension(width, height);
+        setMeasuredDimension(w, h);
     }
 
     @Override
