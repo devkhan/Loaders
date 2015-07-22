@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity
 		ListView list = (ListView) findViewById(R.id.loaders_list);
 
 		String[] loader = new String[]{"Crossword Grid", "Windows", "Numbers", "Circular",
-				"Sqare", "Fade", "Concentric Cirlces"};
+				"Sqare", "Fade", "Concentric Cirlces", "HeartBeat"};
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, loader);
 		list.setAdapter(adapter);
@@ -54,6 +54,12 @@ public class MainActivity extends AppCompatActivity
 						DialogFragment concentricCirclesDialog = new ConcentricCirclesDialog();
 						concentricCirclesDialog.show(getSupportFragmentManager(), "ConcentricCirclesDialog");
 						break;
+
+					case 7:
+						DialogFragment heartBeatDIalog = new HeartBeatDIalog();
+						heartBeatDIalog.show(getSupportFragmentManager(), "HeartBeatDialog");
+						break;
+
 					default:
 						Toast.makeText(getApplicationContext(), "wrong choice" , Toast.LENGTH_LONG).show();
 						break;
