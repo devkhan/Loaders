@@ -3,6 +3,7 @@
 	<declare-styleable name="CrosswordGrid">
 		<attr name="squareSide" format="integer" />
 	</declare-styleable>
+
 	<declare-styleable name="ConcentricCircleView">
 		<attr name="max_radius" format="integer" />
 		<attr name="min_radius" format="integer" />
@@ -11,5 +12,9 @@
 		<attr name="duration" format="integer" />
 		<attr name="start_color" format="color" />
 		<attr name="end_color" format="color" />
+	</declare-styleable>
+
+	<declare-styleable name="HeartDrawView">
+		<attr name="tValue" format="integer"/>
 	</declare-styleable>
 </resources>

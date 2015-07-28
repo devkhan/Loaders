@@ -1,0 +1,180 @@
+package teamdapsr.loaders.lib;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.util.AttributeSet;
+import android.view.View;
+
+import teamdapsr.loaders.lib.utils.MeasureUtils;
+
+import static java.lang.Math.cos;
+import static java.lang.Math.pow;
+import static java.lang.Math.sin;
+import static java.lang.Math.toDegrees;
+import static java.lang.Math.toRadians;
+
+/**
+ * Beating Heart. Extends {@link View}. A Custom View.
+ * <p/>
+ * Created on 27-July-2015.
+ * Modified on 28-July-2015.
+ *
+ * @author Devesh Khandelwal
+ */
+public class HeartDrawView extends View
+{
+	protected int mTValue;
+
+	protected Paint mHeartPaint;
+
+	protected int mAngle = 0;
+
+	protected Path mHeartOutline;
+
+	protected int mX, mY;
+
+	/**
+	 * Simple constructor to use when creating a view from code.
+	 *
+	 * @param context The Context the view is running in, through which it can
+	 *                access the current theme, resources, etc.
+	 */
+	public HeartDrawView(Context context)
+	{
+		super(context);
+	}
+
+	/**
+	 * Constructor that is called when inflating a view from XML. This is called
+	 * when a view is being constructed from an XML file, supplying attributes
+	 * that were specified in the XML file. This version uses a default style of
+	 * 0, so the only attribute values applied are those in the Context's Theme
+	 * and the given AttributeSet.
+	 * <p>
+	 * <p>
+	 * The method onFinishInflate() will be called after all children have been
+	 * added.
+	 *
+	 * @param context The Context the view is running in, through which it can
+	 *                access the current theme, resources, etc.
+	 * @param attrs   The attributes of the XML tag that is inflating the view.
+	 */
+	public HeartDrawView(Context context, AttributeSet attrs)
+	{
+		super(context, attrs);
+
+		/**
+		 * Gets the defined attributes in the layout resource file as a {@link TypedArray}.
+		 */
+		TypedArray styledAttributes = context.getTheme().obtainStyledAttributes(
+				attrs,
+				R.styleable.HeartDrawView,
+				0, 0
+		);
+
+		/**
+		 * Trying to extract defined attributes in the layout resource file.
+		 */
+		try
+		{
+			mTValue = styledAttributes.getInt(R.styleable.HeartDrawView_tValue, 10);
+
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			styledAttributes.recycle();
+		}
+		init();
+	}
+
+	protected void init()
+	{
+		mHeartPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		mHeartPaint.setStyle(Paint.Style.STROKE);
+		mHeartPaint.setColor(0xffff0000);
+
+		mHeartOutline = new Path();
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas)
+	{
+		super.onDraw(canvas);
+
+		mX = (int) (mTValue * 16 * pow(sin(toRadians(mAngle)), 3));
+		mY = (int) (mTValue * ((13 * cos(toRadians(mAngle))) - 5*cos(2*toRadians(mAngle)) - 2*cos
+				(3*toRadians(mAngle)) - cos(4*toRadians(mAngle))));
+
+		mHeartOutline.moveTo(mX, mY);
+
+		canvas.drawPath(mHeartOutline, mHeartPaint);
+
+		/**
+		 * Waiting for sometime, mainly for animation purposes and litte bit performance issues.
+		 */
+		try
+		{
+			Thread.sleep(50);
+			mAngle = (mAngle+10)%360;
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		invalidate();
+
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh)
+	{
+		super.onSizeChanged(w, h, oldw, oldh);
+	}
+
+	@Override
+	public void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
+	{
+		// Get the width measurement
+		int widthSize = MeasureUtils.getMeasurement(widthMeasureSpec, getDesiredWidth());
+
+		// Get the height measurement
+		int heightSize = MeasureUtils.getMeasurement(heightMeasureSpec, getDesiredHeight());
+
+
+		//MUST call this to store the measurements
+		setMeasuredDimension(widthSize + 10, heightSize + 10);
+
+
+	}
+
+	/**
+	 * Calculates width from child components.
+	 *
+	 * @return Desired width in view.
+	 */
+	private int getDesiredWidth()
+	{
+		// TO-DO Calculate width from child components.
+
+		return 2 * mTValue + 100;
+	}
+
+	/**
+	 * Calculate height from child components.
+	 *
+	 * @return Desired height of view.
+	 */
+	private int getDesiredHeight()
+	{
+		// TO-DO Calculate height from child components.
+		return 2 * mTValue + 100;
+	}
+}
