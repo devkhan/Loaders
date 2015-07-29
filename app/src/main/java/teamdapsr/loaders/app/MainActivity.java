@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity
 		ListView list = (ListView) findViewById(R.id.loaders_list);
 
 		String[] loader = new String[]{"Crossword Grid", "Windows", "Numbers", "Circular",
-				"Sqare", "Fade", "Concentric Cirlces", "HeartBeat"};
+				"Sqare", "Fade", "Concentric Cirlces", "HeartBeat", "Heart Shape"};
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, loader);
 		list.setAdapter(adapter);
@@ -58,6 +58,11 @@ public class MainActivity extends AppCompatActivity
 					case 7:
 						DialogFragment heartBeatDIalog = new HeartBeatDIalog();
 						heartBeatDIalog.show(getSupportFragmentManager(), "HeartBeatDialog");
+						break;
+
+					case 8:
+						DialogFragment heartDrawDialog = new HeartDrawDialog();
+						heartDrawDialog.show(getSupportFragmentManager(), "HeartDrawDialog");
 						break;
 
 					default:

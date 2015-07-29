@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import teamdapsr.loaders.lib.utils.MeasureUtils;
@@ -27,6 +28,8 @@ import static java.lang.Math.toRadians;
  */
 public class HeartDrawView extends View
 {
+	private String LOG_TAG = getClass().getSimpleName();
+
 	protected int mTValue;
 
 	protected Paint mHeartPaint;
@@ -102,6 +105,7 @@ public class HeartDrawView extends View
 		mHeartPaint.setColor(0xffff0000);
 
 		mHeartOutline = new Path();
+
 	}
 
 	@Override
@@ -109,11 +113,14 @@ public class HeartDrawView extends View
 	{
 		super.onDraw(canvas);
 
-		mX = (int) (mTValue * 16 * pow(sin(toRadians(mAngle)), 3));
-		mY = (int) (mTValue * ((13 * cos(toRadians(mAngle))) - 5*cos(2*toRadians(mAngle)) - 2*cos
-				(3*toRadians(mAngle)) - cos(4*toRadians(mAngle))));
-
 		mHeartOutline.moveTo(mX, mY);
+		mX = getMeasuredWidth()/2 + (int) (mTValue * 16 * pow(sin(toRadians(mAngle)), 3));
+		mY = getMeasuredHeight()/2 + (int) (mTValue * ((13 * cos(toRadians(mAngle))) - 5*cos
+				(2*toRadians(mAngle)) - 2 * cos(3 * toRadians(mAngle)) - cos(4 * toRadians(mAngle))));
+		mY*=-1;
+		mY+=getMeasuredHeight();
+		Log.i(LOG_TAG, "x = " + mX + ", y = " + mY);
+		mHeartOutline.lineTo(mX, mY);
 
 		canvas.drawPath(mHeartOutline, mHeartPaint);
 
@@ -123,7 +130,7 @@ public class HeartDrawView extends View
 		try
 		{
 			Thread.sleep(50);
-			mAngle = (mAngle+10)%360;
+			mAngle = (mAngle+1)%360;
 		}
 		catch (InterruptedException e)
 		{
@@ -164,7 +171,7 @@ public class HeartDrawView extends View
 	{
 		// TO-DO Calculate width from child components.
 
-		return 2 * mTValue + 100;
+		return 2 * mTValue + 300;
 	}
 
 	/**
@@ -175,6 +182,6 @@ public class HeartDrawView extends View
 	private int getDesiredHeight()
 	{
 		// TO-DO Calculate height from child components.
-		return 2 * mTValue + 100;
+		return 2 * mTValue + 300;
 	}
 }
