@@ -1,14 +1,17 @@
 package teamdapsr.loaders.lib;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnticipateOvershootInterpolator;
 
 import teamdapsr.loaders.lib.utils.MeasureUtils;
 
@@ -39,6 +42,10 @@ public class HeartDrawView extends View
 	protected Path mHeartOutline;
 
 	protected int mX, mY;
+
+	protected ValueAnimator mSizeAnimator;
+
+	protected Path mEmptyPath = new Path();
 
 	/**
 	 * Simple constructor to use when creating a view from code.
@@ -106,6 +113,16 @@ public class HeartDrawView extends View
 
 		mHeartOutline = new Path();
 
+		/**
+		 * Animating size of the shape/path to be drawn.
+		 */
+		mSizeAnimator = ValueAnimator.ofFloat((float)(0.5*mTValue), (float)mTValue);
+		mSizeAnimator.setDuration(3000);
+		mSizeAnimator.setInterpolator(new AnticipateOvershootInterpolator());
+		mSizeAnimator.setRepeatMode(ValueAnimator.REVERSE);
+		mSizeAnimator.setRepeatCount(ValueAnimator.INFINITE);
+		mSizeAnimator.start();
+
 	}
 
 	@Override
@@ -113,31 +130,45 @@ public class HeartDrawView extends View
 	{
 		super.onDraw(canvas);
 
-		mHeartOutline.moveTo(mX, mY);
-		mX = getMeasuredWidth()/2 + (int) (mTValue * 16 * pow(sin(toRadians(mAngle)), 3));
-		mY = getMeasuredHeight()/2 + (int) (mTValue * ((13 * cos(toRadians(mAngle))) - 5*cos
-				(2*toRadians(mAngle)) - 2 * cos(3 * toRadians(mAngle)) - cos(4 * toRadians(mAngle))));
-		mY*=-1;
-		mY+=getMeasuredHeight();
-		Log.i(LOG_TAG, "x = " + mX + ", y = " + mY);
-		mHeartOutline.lineTo(mX, mY);
+		// Reallocating path to remove previous draws.
+		mHeartOutline.reset();
 
+		// Resetting angle.
+		mAngle=360;
+		Log.i(LOG_TAG, "Angle reset.");
+
+		// Get the size of the shape to be drawn from the animator.
+		float size = ((float)(mSizeAnimator.getAnimatedValue()));
+		Log.i(LOG_TAG, "TValue animated value: " + mTValue);
+
+		// Creating path for angle 360->0 degrees.
+		while (mAngle!=0)
+		{
+			mHeartOutline.moveTo(mX, mY);
+			mX = getMeasuredWidth() / 2 + (int) (size * 16 * pow(sin(toRadians(mAngle)), 3));
+			mY = getMeasuredHeight() / 2 + (int) (size * ((13 * cos(toRadians(mAngle))) - 5 * cos
+					(2 * toRadians(mAngle)) - 2 * cos(3 * toRadians(mAngle)) - cos(4 * toRadians(mAngle))));
+			mY *= -1;
+			mY += getMeasuredHeight();
+			mHeartOutline.lineTo(mX, mY);
+			mAngle-=2;
+		}
+
+		// Draw the path.
 		canvas.drawPath(mHeartOutline, mHeartPaint);
-
+		Log.i(LOG_TAG, "Shape drawn.");
 		/**
 		 * Waiting for sometime, mainly for animation purposes and litte bit performance issues.
 		 */
 		try
 		{
 			Thread.sleep(50);
-			mAngle = (mAngle+1)%360;
 		}
 		catch (InterruptedException e)
 		{
 			e.printStackTrace();
 		}
 		invalidate();
-
 	}
 
 	@Override
