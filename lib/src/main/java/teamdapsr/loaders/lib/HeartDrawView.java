@@ -10,6 +10,7 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 
@@ -41,7 +42,7 @@ public class HeartDrawView extends View
 
 	protected Path mHeartOutline;
 
-	protected int mX, mY;
+	protected int mX, mY, centerX, centerY;
 
 	protected ValueAnimator mSizeAnimator;
 
@@ -145,8 +146,8 @@ public class HeartDrawView extends View
 		while (mAngle!=0)
 		{
 			mHeartOutline.moveTo(mX, mY);
-			mX = getMeasuredWidth() / 2 + (int) (size * 16 * pow(sin(toRadians(mAngle)), 3));
-			mY = getMeasuredHeight() / 2 + (int) (size * ((13 * cos(toRadians(mAngle))) - 5 * cos
+			mX = centerX + (int) (size * 16 * pow(sin(toRadians(mAngle)), 3));
+			mY = centerY + (int) (size * ((13 * cos(toRadians(mAngle))) - 5 * cos
 					(2 * toRadians(mAngle)) - 2 * cos(3 * toRadians(mAngle)) - cos(4 * toRadians(mAngle))));
 			mY *= -1;
 			mY += getMeasuredHeight();
@@ -172,6 +173,16 @@ public class HeartDrawView extends View
 	}
 
 	@Override
+	public boolean onTouchEvent(MotionEvent event)
+	{
+		centerX = (int)event.getX();
+		centerY = (int)event.getY();
+
+		postInvalidate();
+		return true;
+	}
+
+	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh)
 	{
 		super.onSizeChanged(w, h, oldw, oldh);
@@ -186,11 +197,11 @@ public class HeartDrawView extends View
 		// Get the height measurement
 		int heightSize = MeasureUtils.getMeasurement(heightMeasureSpec, getDesiredHeight());
 
-
 		//MUST call this to store the measurements
 		setMeasuredDimension(widthSize + 10, heightSize + 10);
 
-
+		centerX = getMeasuredWidth() / 2;
+		centerY = getMeasuredHeight() / 2;
 	}
 
 	/**
