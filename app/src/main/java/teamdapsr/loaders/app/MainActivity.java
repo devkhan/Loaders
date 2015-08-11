@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity
 
 		ListView list = (ListView) findViewById(R.id.loaders_list);
 
-		String[] loader = new String[]{"Crossword Grid", "Windows", "Numbers", "Circular",
+		String[] loader = new String[]{"Crossword Grid", "FillingCircles", "Numbers", "Circular",
 				"Sqare", "Fade", "Concentric Cirlces", "HeartBeat", "Heart Shape"};
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, loader);
@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity
 						break;
 
 					case 1:
+						DialogFragment fillingCirclesDialog = new FillingCirclesDialog();
+						fillingCirclesDialog.show(getSupportFragmentManager(), "FillingCircles");
+						break;
 					case 2:
 					case 3:
 					case 4:
