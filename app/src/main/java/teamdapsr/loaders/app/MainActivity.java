@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity
 
 		ListView list = (ListView) findViewById(R.id.loaders_list);
 
-		String[] loader = new String[]{"Crossword Grid", "Windows", "Numbers", "Circular",
-				"Sqare", "Fade", "Concentric Cirlces"};
+		String[] loader = new String[]{"Crossword Grid", "FillingCircles", "Numbers", "Circular",
+				"Sqare", "Fade", "Concentric Cirlces", "HeartBeat", "Heart Shape"};
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, loader);
 		list.setAdapter(adapter);
@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity
 						break;
 
 					case 1:
+						DialogFragment fillingCirclesDialog = new FillingCirclesDialog();
+						fillingCirclesDialog.show(getSupportFragmentManager(), "FillingCircles");
+						break;
 					case 2:
 					case 3:
 					case 4:
@@ -51,9 +54,20 @@ public class MainActivity extends AppCompatActivity
 						break;
 
 					case 6:
-						DialogFragment ripple = new ConcentricCirclesDialog();
-						ripple.show(getSupportFragmentManager(), "ConcentricCirclesDialog");
+						DialogFragment concentricCirclesDialog = new ConcentricCirclesDialog();
+						concentricCirclesDialog.show(getSupportFragmentManager(), "ConcentricCirclesDialog");
 						break;
+
+					case 7:
+						DialogFragment heartBeatDIalog = new HeartBeatDIalog();
+						heartBeatDIalog.show(getSupportFragmentManager(), "HeartBeatDialog");
+						break;
+
+					case 8:
+						DialogFragment heartDrawDialog = new HeartDrawDialog();
+						heartDrawDialog.show(getSupportFragmentManager(), "HeartDrawDialog");
+						break;
+
 					default:
 						Toast.makeText(getApplicationContext(), "wrong choice" , Toast.LENGTH_LONG).show();
 						break;
