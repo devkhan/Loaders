@@ -33,7 +33,7 @@ public class HeartBeatView extends View
 		this.context=context;
 
 		paint = new Paint();
-		paint.setColor(Color.argb(0xff, 0x99, 0x00, 0x00));
+		paint.setColor(Color.argb(0x11, 0x11, 0xdd, 0x22));
 		paint.setStrokeWidth(10);
 		paint.setAntiAlias(true);
 		paint.setStrokeCap(Paint.Cap.ROUND);
