@@ -17,4 +17,36 @@
 	<declare-styleable name="HeartDrawView">
 		<attr name="tValue" format="integer"/>
 	</declare-styleable>
+
+	<declare-styleable name="FillableLoader">
+		<attr name="fl_fillColor"
+			format="color"/>
+		<attr name="fl_strokeColor"
+			format="color"/>
+		<attr name="fl_strokeWidth"
+			format="dimension"/>
+		<attr name="fl_originalWidth"
+			format="integer"/>
+		<attr name="fl_originalHeight"
+			format="integer"/>
+		<attr name="fl_strokeDrawingDuration"
+			format="integer"/>
+		<attr name="fl_fillDuration"
+			format="integer"/>
+		<attr name="fl_clippingTransform"
+			format="enum">
+			<enum name="plain"
+				value="0"/>
+			<enum name="spikes"
+				value="1"/>
+			<enum name="rounded"
+				value="2"/>
+			<enum name="waves"
+				value="3"/>
+			<enum name="squares"
+				value="4"/>
+			<enum name="bites"
+				value="5"/>
+		</attr>
+	</declare-styleable>
 </resources>

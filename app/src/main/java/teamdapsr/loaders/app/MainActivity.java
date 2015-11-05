@@ -1,5 +1,6 @@
 package teamdapsr.loaders.app;
 
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import teamdapsr.loaders.app.Fill_able.Fill_able_MainActivity;
 
 
 public class MainActivity extends AppCompatActivity
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity
 
 		ListView list = (ListView) findViewById(R.id.loaders_list);
 
-		String[] loader = new String[]{"Crossword Grid", "FillingCircles", "Numbers", "Circular",
+		String[] loader = new String[]{"Crossword Grid", "FillingCircles", "Fill Able ", "Circular",
 				"Sqare", "Fade", "Concentric Cirlces", "HeartBeat", "Heart Shape"};
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, loader);
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity
 						fillingCirclesDialog.show(getSupportFragmentManager(), "FillingCircles");
 						break;
 					case 2:
+						Intent dynasor = new Intent(MainActivity.this, Fill_able_MainActivity.class);
+						startActivity(dynasor);
 					case 3:
 					case 4:
 					case 5:

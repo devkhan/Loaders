@@ -65,4 +65,8 @@ public class Utils
 
 		return Color.argb(rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 	}
+
+	public static float constrain(float min, float max, float v) {
+		return Math.max(min, Math.min(max, v));
+	}
 }

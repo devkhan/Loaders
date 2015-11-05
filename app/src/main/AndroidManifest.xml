@@ -16,8 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Cross"
-            android:label="Loader" >
+        <activity android:name=".Fill_able.Fill_able_MainActivity">
 
         </activity>
     </application>
