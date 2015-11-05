@@ -24,13 +24,12 @@ public class MainActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 
-		getSupportActionBar().setTitle("Loaders");
+		getSupportActionBar().setTitle(getString(R.string.app_name));
 		setContentView(R.layout.activity_main);
 
 		ListView list = (ListView) findViewById(R.id.loaders_list);
 
-		String[] loader = new String[]{"Crossword Grid", "FillingCircles", "Fill Able ", "Circular",
-				"Sqare", "Fade", "Concentric Cirlces", "HeartBeat", "Heart Shape"};
+		String[] loader = new String[]{"Crossword Grid", "Fillable Paths", "Concentric Cirlces", "HeartBeat", "Heart Shape"};
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, loader);
 		list.setAdapter(adapter);
@@ -46,29 +45,21 @@ public class MainActivity extends AppCompatActivity
 						break;
 
 					case 1:
-						DialogFragment fillingCirclesDialog = new FillingCirclesDialog();
-						fillingCirclesDialog.show(getSupportFragmentManager(), "FillingCircles");
-						break;
-					case 2:
 						Intent dynasor = new Intent(MainActivity.this, Fill_able_MainActivity.class);
 						startActivity(dynasor);
-					case 3:
-					case 4:
-					case 5:
-						Toast.makeText(getApplicationContext(), "Coming soon" , Toast.LENGTH_LONG).show();
 						break;
 
-					case 6:
+					case 2:
 						DialogFragment concentricCirclesDialog = new ConcentricCirclesDialog();
 						concentricCirclesDialog.show(getSupportFragmentManager(), "ConcentricCirclesDialog");
 						break;
 
-					case 7:
+					case 3:
 						DialogFragment heartBeatDIalog = new HeartBeatDIalog();
 						heartBeatDIalog.show(getSupportFragmentManager(), "HeartBeatDialog");
 						break;
 
-					case 8:
+					case 4:
 						DialogFragment heartDrawDialog = new HeartDrawDialog();
 						heartDrawDialog.show(getSupportFragmentManager(), "HeartDrawDialog");
 						break;
