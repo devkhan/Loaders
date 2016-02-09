@@ -3,9 +3,9 @@ language: android
 
 branches:
   only:
-    - master
+    - main
 
-script: "./gradlew clean assembleDebug"
+script: "./gradlew clean assembleRelease"
 
 android:
   components:
