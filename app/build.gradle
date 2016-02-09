@@ -25,4 +25,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile project(':lib')
     compile 'com.android.support:design:22.2.1'
+    compile'teamdapsr.loaders:lib:1.0'
 }

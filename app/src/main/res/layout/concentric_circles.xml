@@ -16,16 +16,6 @@
 	    custom:animate_color="false"
 	    custom:circles_count="15"/>
 
-    <teamdapsr.loaders.lib.ConcentricCircleView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:id="@+id/view2"
-        custom:min_radius="10"
-        custom:max_radius="400"
-        custom:duration="10000"
-        custom:animate_color="true"
-        custom:circles_count="3"
-        custom:start_color="#888888"
-        custom:end_color="#bbbbbb"/>
+
 
 </LinearLayout>

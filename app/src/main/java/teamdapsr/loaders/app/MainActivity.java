@@ -12,8 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import teamdapsr.loaders.app.Fill_able.Fill_able_MainActivity;
-
 
 public class MainActivity extends AppCompatActivity
 {
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity
 
 		ListView list = (ListView) findViewById(R.id.loaders_list);
 
-		String[] loader = new String[]{"Crossword Grid", "Fillable Paths", "Concentric Cirlces", "HeartBeat", "Heart Shape"};
+		String[] loader = new String[]{"Crossword Grid", "Concentric Cirlces", "HeartBeat", "Heart Shape"};
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, loader);
 		list.setAdapter(adapter);
@@ -45,21 +43,16 @@ public class MainActivity extends AppCompatActivity
 						break;
 
 					case 1:
-						Intent dynasor = new Intent(MainActivity.this, Fill_able_MainActivity.class);
-						startActivity(dynasor);
-						break;
-
-					case 2:
 						DialogFragment concentricCirclesDialog = new ConcentricCirclesDialog();
 						concentricCirclesDialog.show(getSupportFragmentManager(), "ConcentricCirclesDialog");
 						break;
 
-					case 3:
+					case 2:
 						DialogFragment heartBeatDIalog = new HeartBeatDIalog();
 						heartBeatDIalog.show(getSupportFragmentManager(), "HeartBeatDialog");
 						break;
 
-					case 4:
+					case 3:
 						DialogFragment heartDrawDialog = new HeartDrawDialog();
 						heartDrawDialog.show(getSupportFragmentManager(), "HeartDrawDialog");
 						break;
