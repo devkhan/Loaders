@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/devkhan/Loaders.svg?branch=main)](https://travis-ci.org/devkhan/Loaders)
 
-==========================
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Loaders-blue.svg?style=flat)](http://android-arsenal.com/details/1/3130)
+
 
 This project aims at creating an animation library for different types of loading animations, progress dialogs, etc.
 
@@ -55,5 +56,9 @@ XML Code:
 ### Contribute
 
 If you want to contribute, please add new class in Loaders/lib/java/.
+
+### License
+
+![WTFPL Badge](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png)
 
 _Namaste_
