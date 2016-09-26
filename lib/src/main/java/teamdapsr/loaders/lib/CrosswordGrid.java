@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import java.util.Random;
@@ -122,8 +121,6 @@ public class CrosswordGrid extends View {
         mSquarePaintFill = new Paint(Paint.ANTI_ALIAS_FLAG);
         mSquarePaintFill.setColor(0xffffffff);
         mSquarePaintFill.setStyle(Paint.Style.FILL);
-
-
     }
 
     @Override
@@ -145,7 +142,6 @@ public class CrosswordGrid extends View {
                 }
             }
         }
-        Log.i(VIEW_LOG_TAG, "onDraw finished.");
         try {
             Thread.sleep(150);
         } catch (InterruptedException e) {
@@ -160,6 +156,7 @@ public class CrosswordGrid extends View {
     }
 
     private void generateRandomCoordinates() {
+
         for (int i = 0; i < GRID_ROWS; i++) {
             for (int j = 0; j < GRID_COLUMNS; j++) {
                 coordinates[i][j] = false;
@@ -172,15 +169,6 @@ public class CrosswordGrid extends View {
         }
         invalidate();
         requestLayout();
-    }
-
-    public class Coordinate {
-        int x, y;
-
-        Coordinate(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
     }
 
 }
