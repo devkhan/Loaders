@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 /**
  * Created by pa1pal on 9/6/15.
  */
-public class Cross extends DialogFragment {
+public class CrosswordGridDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction

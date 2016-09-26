@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        DialogFragment dialog = new Cross();
-                        dialog.show(getSupportFragmentManager(), "Cross");
+                        DialogFragment dialog = new CrosswordGridDialog();
+                        dialog.show(getSupportFragmentManager(), "CrosswordGridDialog");
                         break;
 
                     case 1:
