@@ -9,16 +9,6 @@ This project aims at creating an animation library for different types of loadin
 
 The current structure is:
 
-![Phone Screenshot](https://raw.githubusercontent.com/devkhan/Loaders/main/Screenshots/cocentric_circle2.gif)
-
-![Phone Screenshot](https://raw.githubusercontent.com/devkhan/Loaders/main/Screenshots/cocentric_circles.gif)
-
-![Phone Screenshot](https://raw.githubusercontent.com/devkhan/Loaders/main/Screenshots/heart_shape.gif)
-
-![Phone Screenshot](https://raw.githubusercontent.com/devkhan/Loaders/main/Screenshots/heart_beat.gif)
-
-![Phone Screenshot](https://raw.githubusercontent.com/devkhan/Loaders/main/Screenshots/crossword_grid.gif)
-
 Project: Loaders  
 >        |   settings.gradle  
 >        +   app/  
