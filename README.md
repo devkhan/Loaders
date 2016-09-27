@@ -4,21 +4,8 @@
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Loaders-blue.svg?style=flat)](http://android-arsenal.com/details/1/3130)
 
+An animation library consisting of different types of loading animations, progress dialogs, etc.
 
-This project aims at creating an animation library for different types of loading animations, progress dialogs, etc.
-
-The current structure is:
-
-Project: Loaders  
->        |   settings.gradle  
->        +   app/  
->            |   build.gradle  
->            |   java  
->            |   res  
->        +   lib/  
->            |   build.gradle  
->            |   java  
->            |   res  
 
 # Usage
 
