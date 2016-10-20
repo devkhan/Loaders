@@ -4,31 +4,8 @@
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Loaders-blue.svg?style=flat)](http://android-arsenal.com/details/1/3130)
 
+An animation library consisting of different types of loading animations, progress dialogs, etc.
 
-This project aims at creating an animation library for different types of loading animations, progress dialogs, etc.
-
-The current structure is:
-
-![Phone Screenshot](https://raw.githubusercontent.com/devkhan/Loaders/main/Screenshots/cocentric_circle2.gif)
-
-![Phone Screenshot](https://raw.githubusercontent.com/devkhan/Loaders/main/Screenshots/cocentric_circles.gif)
-
-![Phone Screenshot](https://raw.githubusercontent.com/devkhan/Loaders/main/Screenshots/heart_shape.gif)
-
-![Phone Screenshot](https://raw.githubusercontent.com/devkhan/Loaders/main/Screenshots/heart_beat.gif)
-
-![Phone Screenshot](https://raw.githubusercontent.com/devkhan/Loaders/main/Screenshots/crossword_grid.gif)
-
-Project: Loaders  
->        |   settings.gradle  
->        +   app/  
->            |   build.gradle  
->            |   java  
->            |   res  
->        +   lib/  
->            |   build.gradle  
->            |   java  
->            |   res  
 
 # Usage
 
