@@ -1,4 +1,4 @@
-package teamdapsr.loaders.lib;
+package devkhan.loaders.lib;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,7 +10,7 @@ import android.view.View;
 
 import java.util.Random;
 
-import teamdapsr.loaders.lib.utils.MeasureUtils;
+import devkhan.loaders.lib.utils.MeasureUtils;
 
 /**
  * Created by Devesh on 08-Jun-15.

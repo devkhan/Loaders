@@ -1,4 +1,4 @@
-package teamdapsr.loaders.lib;
+package devkhan.loaders.lib;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.pow;
@@ -17,7 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 
-import teamdapsr.loaders.lib.utils.MeasureUtils;
+import devkhan.loaders.lib.utils.MeasureUtils;
 
 /**
  * Beating Heart. Extends {@link View}. A Custom View.

@@ -1,4 +1,4 @@
-package teamdapsr.loaders.lib;
+package devkhan.loaders.lib;
 
 import android.app.Dialog;
 import android.content.Context;

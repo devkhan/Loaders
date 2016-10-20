@@ -1,4 +1,4 @@
-package teamdapsr.loaders.lib.utils;
+package devkhan.loaders.lib.utils;
 
 import android.graphics.Color;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;

@@ -1,4 +1,4 @@
-package teamdapsr.loaders.app;
+package devkhan.loaders.app;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -8,9 +8,9 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 
 /**
- * Created by Devesh on 23-Jul-15.
+ * Created by pa1pal on 9/6/15.
  */
-public class HeartBeatDIalog extends DialogFragment {
+public class ConcentricCirclesDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
@@ -19,7 +19,7 @@ public class HeartBeatDIalog extends DialogFragment {
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.heart_beat, null))
+        builder.setView(inflater.inflate(R.layout.concentric_circles, null))
                 // Add action buttons
                 .setPositiveButton("positive", new DialogInterface.OnClickListener() {
                     @Override
@@ -31,3 +31,4 @@ public class HeartBeatDIalog extends DialogFragment {
         return builder.create();
     }
 }
+

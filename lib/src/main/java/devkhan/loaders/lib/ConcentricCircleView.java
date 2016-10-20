@@ -1,4 +1,4 @@
-package teamdapsr.loaders.lib;
+package devkhan.loaders.lib;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -10,8 +10,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import teamdapsr.loaders.lib.utils.MeasureUtils;
-import teamdapsr.loaders.lib.utils.Utils;
+import devkhan.loaders.lib.utils.MeasureUtils;
+import devkhan.loaders.lib.utils.Utils;
 
 /**
  * Animating concentric circles. Extends {@link View}. A Custom View.
